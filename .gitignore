@@ -1,0 +1,9 @@
+# Root-level ignores; backend/ and frontend/ bring their own .gitignore.
+
+# Local Claude Code settings
+.claude/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

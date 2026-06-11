@@ -1,0 +1,71 @@
+// Prisma schema for the SaaS-Light project management tool.
+//
+// Entity hierarchy: User -> Board -> Column -> Task.
+// All child relations cascade on delete so removing a board cleans up
+// its columns and tasks without orphaned rows.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  /// bcrypt hash – the plain password never touches the database.
+  passwordHash String
+  name         String
+  boards       Board[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Board {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  owner       User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId     String
+  columns     Column[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([ownerId])
+  @@map("boards")
+}
+
+model Column {
+  id        String   @id @default(cuid())
+  title     String
+  /// Zero-based ordering inside the board; re-indexed on reorder.
+  position  Int
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId   String
+  tasks     Task[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([boardId])
+  @@map("columns")
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  /// Zero-based ordering inside the column; re-indexed on drag & drop.
+  position    Int
+  column      Column   @relation(fields: [columnId], references: [id], onDelete: Cascade)
+  columnId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([columnId])
+  @@map("tasks")
+}
