@@ -1,5 +1,13 @@
 # Flowboard
 
+[![CI](https://github.com/AdrianDeutsch/flowboard/actions/workflows/ci.yml/badge.svg)](https://github.com/AdrianDeutsch/flowboard/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=next.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-5-000000?logo=express&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-PostgreSQL-2D3748?logo=prisma&logoColor=white)
+![Tests](https://img.shields.io/badge/tests-32%20passing-success)
+
 A lightweight, full-stack project management tool — a minimal Trello-style app with
 secure authentication, board management and a fluid drag & drop Kanban experience.
 
