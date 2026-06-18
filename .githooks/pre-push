@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Local quality gate: run lint + tests for both apps before every push, mirroring
+# the GitHub Actions CI so a red push is caught on the dev machine first.
+#
+# Enable once per clone:
+#   git config core.hooksPath .githooks
+#
+# Bypass when you really need to (e.g. pushing a WIP branch):
+#   SKIP_CHECKS=1 git push
+set -euo pipefail
+
+if [ "${SKIP_CHECKS:-0}" = "1" ]; then
+  echo "pre-push: SKIP_CHECKS=1 set — skipping checks."
+  exit 0
+fi
+
+ROOT="$(git rev-parse --show-toplevel)"
+
+run() {
+  echo ""
+  echo "pre-push: $1 ..."
+  ( cd "$ROOT/$2" && eval "$3" )
+}
+
+run "backend  · lint"  backend  "npm run lint"
+run "backend  · tests" backend  "npm test"
+run "frontend · lint"  frontend "npm run lint"
+run "frontend · tests" frontend "npm test"
+
+echo ""
+echo "pre-push: all checks passed ✓"

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 200" width="760" height="200" role="img" aria-label="Flowboard - full-stack Kanban app">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#c084fc"/>
+    </linearGradient>
+    <style>
+      .title { font: 700 52px -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #f8fafc; }
+      .tag   { font: 400 19px -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #a5b4fc; }
+      .card  { font: 600 11px -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #cbd5e1; }
+      .coltitle { font: 700 11px -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #64748b; letter-spacing: 1px; }
+    </style>
+  </defs>
+
+  <rect width="760" height="200" rx="18" fill="url(#bg)"/>
+
+  <!-- Wordmark -->
+  <text x="48" y="92" class="title">Flowboard</text>
+  <rect x="50" y="108" width="64" height="5" rx="2.5" fill="url(#accent)"/>
+  <text x="48" y="142" class="tag">Trello-style Kanban &#183; full-stack TypeScript</text>
+
+  <!-- Kanban motif -->
+  <g transform="translate(470, 40)">
+    <!-- Column 1: To Do -->
+    <text x="6" y="6" class="coltitle">TO DO</text>
+    <rect x="0" y="14" width="80" height="26" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="10" y="31" class="card">Design API</text>
+    <rect x="0" y="46" width="80" height="26" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="10" y="63" class="card">Auth flow</text>
+
+    <!-- Column 2: Doing -->
+    <text x="100" y="6" class="coltitle">DOING</text>
+    <rect x="94" y="14" width="80" height="26" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="104" y="31" class="card">Drag &amp; drop</text>
+
+    <!-- Column 3: Done -->
+    <text x="194" y="6" class="coltitle">DONE</text>
+    <rect x="188" y="14" width="80" height="26" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="198" y="31" class="card">Boards CRUD</text>
+    <rect x="188" y="46" width="80" height="26" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="198" y="63" class="card">Tests green</text>
+
+    <!-- Card in motion (being dragged from Doing -> Done) -->
+    <g transform="translate(150, 84) rotate(-4)">
+      <rect x="0" y="0" width="80" height="26" rx="6" fill="#312e81" stroke="url(#accent)" stroke-width="1.5"/>
+      <text x="10" y="17" class="card" fill="#e0e7ff">Move task</text>
+    </g>
+  </g>
+</svg>
