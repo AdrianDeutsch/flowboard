@@ -1,4 +1,4 @@
-# SaaS-Light – Backend
+# Flowboard – Backend
 
 Express + TypeScript + Prisma (PostgreSQL) API with JWT authentication via httpOnly cookies.
 

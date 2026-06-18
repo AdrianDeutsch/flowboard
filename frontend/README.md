@@ -1,4 +1,4 @@
-# SaaS-Light – Frontend
+# Flowboard – Frontend
 
 Next.js (App Router) + React + Tailwind CSS + TypeScript. Kanban drag & drop via dnd-kit.
 

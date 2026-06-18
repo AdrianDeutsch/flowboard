@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SaaS Light",
+  title: "Flowboard",
   description: "A lightweight project management tool",
 };
 

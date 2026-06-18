@@ -1,8 +1,8 @@
 {
-  "name": "saas-light-backend",
+  "name": "flowboard-backend",
   "version": "0.1.0",
   "private": true,
-  "description": "Express + Prisma backend for the SaaS-Light project management tool",
+  "description": "Express + Prisma backend for the Flowboard project management tool",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",

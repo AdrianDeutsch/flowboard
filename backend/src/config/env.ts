@@ -12,7 +12,7 @@ const envSchema = z.object({
   DATABASE_URL: z
     .string()
     .url()
-    .default('postgresql://postgres:postgres@localhost:5432/saas_light?schema=public'),
+    .default('postgresql://postgres:postgres@localhost:5432/flowboard?schema=public'),
   JWT_SECRET: z.string().min(16).default('dev-only-secret-change-me-please'),
   JWT_EXPIRES_IN: z.string().default('7d'),
   FRONTEND_ORIGIN: z.string().url().default('http://localhost:3000'),

@@ -1,4 +1,4 @@
-# SaaS Light
+# Flowboard
 
 A lightweight, full-stack project management tool — a minimal Trello-style app with
 secure authentication, board management and a fluid drag & drop Kanban experience.
@@ -83,8 +83,8 @@ Requirements: Node.js 20+, Docker (or any local PostgreSQL).
 
 ```bash
 # 1. Database
-docker run -d --name saas-light-pg \
-  -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=saas_light \
+docker run -d --name flowboard-pg \
+  -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=flowboard \
   -p 5432:5432 postgres:16-alpine
 
 # 2. Backend (terminal 1)

@@ -1,4 +1,4 @@
-// Prisma schema for the SaaS-Light project management tool.
+// Prisma schema for the Flowboard project management tool.
 //
 // Entity hierarchy: User -> Board -> Column -> Task.
 // All child relations cascade on delete so removing a board cleans up
