@@ -24,6 +24,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Everything except Next.js internals and static assets.
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  // Everything except the proxied API, Next.js internals and static assets.
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

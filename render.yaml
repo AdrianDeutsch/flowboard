@@ -1,0 +1,25 @@
+# Render Blueprint for the Flowboard backend.
+# The database is hosted separately on Neon — paste its connection string into
+# DATABASE_URL (marked sync: false, so it is set in the dashboard, not in git).
+#
+# Deploy: Render Dashboard -> New -> Blueprint -> pick this repo.
+services:
+  - type: web
+    name: flowboard-api
+    runtime: node
+    rootDir: backend
+    plan: free
+    region: frankfurt
+    healthCheckPath: /api/health
+    buildCommand: npm ci && npx prisma generate && npm run build
+    # Apply pending migrations on every deploy, then start the server.
+    startCommand: npx prisma migrate deploy && node dist/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false # paste the Neon connection string (with ?sslmode=require)
+      - key: FRONTEND_ORIGIN
+        sync: false # set to the Vercel URL, e.g. https://flowboard.vercel.app

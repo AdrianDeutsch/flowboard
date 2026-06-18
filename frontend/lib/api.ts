@@ -1,6 +1,10 @@
 import { Board, BoardDetail, Column, Task, User } from './types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+// Requests go to this app's own origin and are proxied to the backend via the
+// rewrite in next.config (BFF pattern). Keeping calls same-origin means the
+// httpOnly auth cookie stays first-party, so sameSite=lax remains valid in
+// production. Defaults to a relative base; override only for direct API access.
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? '';
 
 /** Error thrown for failed API calls; `status` 0 means network failure. */
 export class ApiError extends Error {
@@ -21,7 +25,7 @@ export class ApiError extends Error {
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   let response: Response;
   try {
-    response = await fetch(`${API_URL}/api${path}`, {
+    response = await fetch(`${API_BASE}/api${path}`, {
       ...options,
       credentials: 'include',
       headers: { 'Content-Type': 'application/json', ...options.headers },

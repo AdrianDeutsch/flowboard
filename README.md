@@ -118,6 +118,19 @@ cd backend && npm test     # 23 tests – auth, boards, task moves (DB mocked)
 cd frontend && npm test    # 9 tests – forms, Kanban board, rollback behavior
 ```
 
+## Deployment
+
+The frontend proxies all `/api/*` traffic to the backend via a Next.js rewrite
+(`next.config.ts`), so the browser only ever talks to a single origin. This
+keeps the httpOnly auth cookie **first-party**, which is what makes
+`sameSite=lax` stay valid once frontend and backend live on different hosts.
+
+| Component | Host  | Notes                                              |
+| --------- | ----- | -------------------------------------------------- |
+| Frontend  | Vercel | Root directory `frontend/`, env `BACKEND_INTERNAL_URL` → backend URL |
+| Backend   | Render | Blueprint in [`render.yaml`](render.yaml); runs `prisma migrate deploy` on each release |
+| Database  | Neon  | PostgreSQL; connection string set as `DATABASE_URL` on Render        |
+
 ## API overview
 
 The full endpoint reference lives in [backend/README.md](backend/README.md).
