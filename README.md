@@ -1,15 +1,20 @@
 # Flowboard
 
+[![Live demo](https://img.shields.io/badge/Live_demo-flowboard.vercel.app-000000?logo=vercel&logoColor=white)](https://flowboard-weld.vercel.app)
 [![CI](https://github.com/AdrianDeutsch/flowboard/actions/workflows/ci.yml/badge.svg)](https://github.com/AdrianDeutsch/flowboard/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=next.js&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=next.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5-000000?logo=express&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-PostgreSQL-2D3748?logo=prisma&logoColor=white)
 ![Tests](https://img.shields.io/badge/tests-32%20passing-success)
 
 A lightweight, full-stack project management tool — a minimal Trello-style app with
 secure authentication, board management and a fluid drag & drop Kanban experience.
+
+**🔗 Live demo: [flowboard-weld.vercel.app](https://flowboard-weld.vercel.app)** —
+create an account and start organizing. The backend runs on a free tier that
+sleeps after inactivity, so the very first request may take ~50 s to wake it.
 
 Built as a clean-architecture reference project with production-grade patterns:
 strict TypeScript end to end, validated inputs, tested critical paths and a clear
@@ -120,10 +125,13 @@ cd frontend && npm test    # 9 tests – forms, Kanban board, rollback behavior
 
 ## Deployment
 
-The frontend proxies all `/api/*` traffic to the backend via a Next.js rewrite
-(`next.config.ts`), so the browser only ever talks to a single origin. This
-keeps the httpOnly auth cookie **first-party**, which is what makes
-`sameSite=lax` stay valid once frontend and backend live on different hosts.
+The frontend proxies all `/api/*` traffic to the backend through a catch-all
+route handler ([`app/api/[...path]/route.ts`](frontend/app/api/[...path]/route.ts)),
+so the browser only ever talks to a single origin. This keeps the httpOnly auth
+cookie **first-party**, which is what makes `sameSite=lax` stay valid once
+frontend and backend live on different hosts — and sidesteps third-party-cookie
+blocking. Route protection runs in server-component layouts (Node runtime), not
+edge middleware.
 
 | Component | Host  | Notes                                              |
 | --------- | ----- | -------------------------------------------------- |
