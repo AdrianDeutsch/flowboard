@@ -5,7 +5,6 @@ import type { NextConfig } from "next";
 const backendUrl = process.env.BACKEND_INTERNAL_URL ?? "http://localhost:4000";
 
 const nextConfig: NextConfig = {
-  reactCompiler: true,
   /**
    * Proxy all /api/* traffic to the backend so the browser only ever talks to
    * this origin (BFF pattern). The auth cookie the backend sets then stays
